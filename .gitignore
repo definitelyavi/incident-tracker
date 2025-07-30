@@ -1,0 +1,116 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Runtime Data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs/
+*.log
+loglevel=silent
+
+# Coverage Directory (Testing)
+coverage/
+*.lcov
+.nyc_output
+
+# Dependency Directories
+jspm_packages/
+
+# Optional NPM Cache Directory
+.npm
+
+# Optional ESLint Cache
+.eslintcache
+
+# Optional REPL History
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity File
+.yarn-integrity
+
+# Yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Application Specific Directories
+uploads/
+temp/
+tmp/
+dist/
+build/
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup Files
+*.bak
+*.backup
+*.old
+
+# SSL Certificates
+*.pem
+*.key
+*.crt
+*.cert
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Terraform (if using infrastructure as code)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Local Development
+.cache/
+.parcel-cache/
+
+# Vercel
+.vercel
+
+# Railway
+.railway/
+
+# Misc
+*.tsbuildinfo
+.eslintcache

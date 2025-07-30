@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Tracker Dashboard</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/tickets.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Incident Tracker</h1>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </button>
+                <button class="nav-tab" data-tab="tickets">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                </button>
+                <button class="nav-tab" data-tab="users">
+                    <i class="fas fa-users"></i>
+                    Users
+                </button>
+                <button class="nav-tab" data-tab="analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics
+                </button>
+            </nav>
+            <div class="user-info">
+                <div class="notification-bell" id="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count" id="notification-count">0</span>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <button class="mark-all-read" id="mark-all-read">Mark all as read</button>
+                        </div>
+                        <div class="notification-list" id="notification-list">
+                            <div class="no-notifications">
+                                <i class="fas fa-bell-slash"></i>
+                                <p>No new notifications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-warning reset-demo-btn" id="reset-demo-btn" title="Reset Demo Data">
+                    <i class="fas fa-refresh"></i>
+                    Reset Demo
+                </button>
+                
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="user-name">John Doe</span>
+                    <span class="user-role">Admin</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div id="dashboard" class="tab-content active">
+            <div class="dashboard-header">
+                <h2>Dashboard Overview</h2>
+                <div class="dashboard-actions">
+                    <button class="btn btn-primary" id="create-ticket-btn">
+                        <i class="fas fa-plus"></i>
+                        Create Ticket
+                    </button>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card critical">
+                    <div class="metric-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3 id="critical-count">5</h3>
+                        <p>Critical Issues</p>
+                    </div>
+                </div>
+                <div class="metric-card high">
+                    <div class="metric-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3 id="high-count">12</h3>
+                        <p>High Priority</p>
+                    </div>
+                </div>
+                <div class="metric-card open">
+                    <div class="metric-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3 id="open-count">23</h3>
+                        <p>Open Tickets</p>
+                    </div>
+                </div>
+                <div class="metric-card resolved">
+                    <div class="metric-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3 id="resolved-count">156</h3>
+                        <p>Resolved Today</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sla-section">
+                <h3>SLA Performance</h3>
+                <div class="sla-grid">
+                    <div class="sla-card">
+                        <h4>Response Time</h4>
+                        <div class="sla-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span>Loading...</span>
+                        </div>
+                    </div>
+                    <div class="sla-card">
+                        <h4>Resolution Time</h4>
+                        <div class="sla-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span>Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-list" id="activity-list"></div>
+            </div>
+        </div>
+
+        <div id="tickets" class="tab-content">
+            <div class="tickets-header">
+                <h2>Incident Tickets</h2>
+                <div class="tickets-controls">
+                    <div class="search-box">
+                        <input type="text" id="ticket-search" placeholder="Search tickets...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="open">Open</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <select id="priority-filter" class="filter-select">
+                        <option value="all">All Priority</option>
+                        <option value="critical">Critical</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <button class="btn btn-primary" id="create-ticket-btn-tickets">
+                        <i class="fas fa-plus"></i>
+                        Create Ticket
+                    </button>
+                </div>
+            </div>
+            <div class="tickets-table-container">
+                <table class="tickets-table" id="tickets-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Assignee</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tickets-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="users" class="tab-content">
+            <div class="users-header">
+                <h2>User Management</h2>
+                <button class="btn btn-primary" id="create-user-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Add User
+                </button>
+            </div>
+            <div class="users-grid" id="users-grid"></div>
+        </div>
+
+        <div id="analytics" class="tab-content">
+            <div class="analytics-header">
+                <h2>Analytics & Reports</h2>
+            </div>
+            <div class="analytics-grid">
+                <div class="chart-container">
+                    <h3>Tickets by Priority</h3>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="priority-chart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3>Resolution Trends (Last 7 Days)</h3>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="trends-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Create New Ticket</h3>
+                <button class="close-btn" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="ticket-form" class="modal-form">
+                <div class="form-group">
+                    <label for="ticket-title">Title *</label>
+                    <input type="text" id="ticket-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticket-description">Description *</label>
+                    <textarea id="ticket-description" rows="4" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ticket-priority">Priority *</label>
+                        <select id="ticket-priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket-status">Status *</label>
+                        <select id="ticket-status" required>
+                            <option value="open">Open</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ticket-category">Category</label>
+                        <select id="ticket-category">
+                            <option value="hardware">Hardware</option>
+                            <option value="software">Software</option>
+                            <option value="network">Network</option>
+                            <option value="security">Security</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket-assignee">Assignee</label>
+                        <select id="ticket-assignee">
+                            <option value="">Unassigned</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="comments-section" id="comments-section" style="display: none;">
+                    <h4>Comments</h4>
+                    <div class="comments-list" id="comments-list"></div>
+                    <div class="add-comment">
+                        <textarea 
+                            id="new-comment" 
+                            placeholder="Add a comment... (Shift+Enter for new line, Enter to submit)"
+                            rows="3"
+                            maxlength="2000"
+                        ></textarea>
+                        <div class="comment-actions">
+                            <button type="button" id="add-comment-btn" class="btn btn-secondary">
+                                <i class="fas fa-comment"></i>
+                                Add Comment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-ticket">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="user-modal-title">Add New User</h3>
+                <button class="close-btn" id="close-user-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="user-form" class="modal-form">
+                <div class="form-group">
+                    <label for="user-name">Full Name *</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email *</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-role">Role *</label>
+                    <select id="user-role" required>
+                        <option value="viewer">Viewer</option>
+                        <option value="agent">Support Agent</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-user">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content confirmation-dialog">
+            <div class="confirmation-header">
+                <div class="confirmation-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 id="confirmation-title">Confirm Action</h3>
+            </div>
+            <div class="confirmation-body">
+                <p id="confirmation-message">Are you sure you want to proceed?</p>
+            </div>
+            <div class="confirmation-actions">
+                <button type="button" class="btn btn-secondary" id="confirmation-cancel">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmation-confirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</body>
+</html>

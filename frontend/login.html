@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Incident Tracker</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 0;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .login-header {
+            background: #333333;
+            color: white;
+            padding: 3rem 2rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .login-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+        
+        .login-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .login-header h1 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.025em;
+        }
+        
+        .login-header p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        .login-form {
+            padding: 3rem 2rem;
+        }
+        
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 0.875rem 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .success-message {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #dcfce7;
+            border-radius: 6px;
+            padding: 0.875rem 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-credentials {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #0c4a6e;
+        }
+        
+        .demo-credentials h4 {
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
+            color: #0284c7;
+        }
+        
+        .demo-credentials p {
+            margin: 0.25rem 0;
+            font-family: monospace;
+        }
+        
+        .login-footer {
+            padding: 1.5rem 2rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+            background: #fafafa;
+        }
+        
+        .login-footer p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #666666;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-login.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 1rem;
+                max-width: none;
+            }
+            
+            .login-header {
+                padding: 2rem 1.5rem 1.5rem 1.5rem;
+            }
+            
+            .login-form {
+                padding: 2rem 1.5rem;
+            }
+            
+            .login-footer {
+                padding: 1rem 1.5rem 1.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <i class="fas fa-shield-alt"></i>
+            <h1>Incident Tracker</h1>
+            <p>Sign in to your account</p>
+        </div>
+        
+        <form id="login-form" class="login-form">
+            <div id="error-message" class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="error-text"></span>
+            </div>
+            
+            <div id="success-message" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <span id="success-text"></span>
+            </div>
+            
+            <div class="demo-credentials">
+                <h4>Demo Credentials</h4>
+                <p><strong>Email:</strong> admin@test.com</p>
+                <p><strong>Password:</strong> password123</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required value="admin@test.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required value="password123">
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-login" id="login-btn">
+                <span class="btn-text">Sign In</span>
+                <div class="loading-spinner" id="loading-spinner"></div>
+            </button>
+        </form>
+        
+        <div class="login-footer">
+            <p>Secure access to your incident management dashboard</p>
+        </div>
+    </div>
+
+    <script>
+        class LoginManager {
+            constructor() {
+                this.form = document.getElementById('login-form');
+                this.errorDiv = document.getElementById('error-message');
+                this.errorText = document.getElementById('error-text');
+                this.successDiv = document.getElementById('success-message');
+                this.successText = document.getElementById('success-text');
+                this.loginBtn = document.getElementById('login-btn');
+                this.btnText = this.loginBtn.querySelector('.btn-text');
+                this.spinner = document.getElementById('loading-spinner');
+                
+                this.initializeEventListeners();
+                this.checkExistingAuth();
+            }
+            
+            initializeEventListeners() {
+                this.form.addEventListener('submit', (e) => this.handleLogin(e));
+                document.getElementById('email').addEventListener('input', () => this.hideError());
+                document.getElementById('password').addEventListener('input', () => this.hideError());
+            }
+            
+            checkExistingAuth() {
+                const token = localStorage.getItem('auth_token');
+                if (token) {
+                    this.verifyToken(token);
+                }
+            }
+            
+            async verifyToken(token) {
+                try {
+                    const response = await fetch('/api/auth/me', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        this.showSuccess('Already logged in. Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 1000);
+                    } else {
+                        localStorage.removeItem('auth_token');
+                        localStorage.removeItem('refresh_token');
+                        localStorage.removeItem('user_data');
+                    }
+                } catch (error) {
+                    console.error('Token verification failed:', error);
+                }
+            }
+            
+            async handleLogin(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                
+                if (!email || !password) {
+                    this.showError('Please enter both email and password');
+                    return;
+                }
+                
+                this.setLoading(true);
+                this.hideError();
+                this.hideSuccess();
+                
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        localStorage.setItem('auth_token', data.token);
+                        localStorage.setItem('refresh_token', data.refreshToken);
+                        localStorage.setItem('user_data', JSON.stringify(data.user));
+                        
+                        this.showSuccess('Login successful! Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 1000);
+                    } else {
+                        this.showError(data.message || 'Login failed. Please check your credentials.');
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    this.showError('Connection error. Please check your network and try again.');
+                } finally {
+                    this.setLoading(false);
+                }
+            }
+            
+            setLoading(loading) {
+                if (loading) {
+                    this.loginBtn.disabled = true;
+                    this.loginBtn.classList.add('loading');
+                    this.btnText.style.display = 'none';
+                    this.spinner.style.display = 'inline-block';
+                } else {
+                    this.loginBtn.disabled = false;
+                    this.loginBtn.classList.remove('loading');
+                    this.btnText.style.display = 'inline';
+                    this.spinner.style.display = 'none';
+                }
+            }
+            
+            showError(message) {
+                this.errorText.textContent = message;
+                this.errorDiv.style.display = 'flex';
+                this.successDiv.style.display = 'none';
+            }
+            
+            hideError() {
+                this.errorDiv.style.display = 'none';
+            }
+            
+            showSuccess(message) {
+                this.successText.textContent = message;
+                this.successDiv.style.display = 'flex';
+                this.errorDiv.style.display = 'none';
+            }
+            
+            hideSuccess() {
+                this.successDiv.style.display = 'none';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            new LoginManager();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+.tickets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tickets-header h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #333333;
+    margin: 0;
+    letter-spacing: -0.025em;
+}
+
+.tickets-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-box {
+    position: relative;
+    display: inline-block;
+}
+
+.search-box input {
+    padding: 0.875rem 1rem;
+    padding-right: 3rem;
+    min-width: 300px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: white;
+    color: #333333;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #333333;
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+}
+
+.search-box i {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888888;
+    font-size: 0.9rem;
+}
+
+.filter-select {
+    padding: 0.875rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: white;
+    font-size: 0.9rem;
+    color: #333333;
+    cursor: pointer;
+    min-width: 140px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #333333;
+}
+
+.tickets-table-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tickets-table th,
+.tickets-table td {
+    padding: 1.25rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.tickets-table th {
+    background: #fafafa;
+    font-weight: 500;
+    color: #333333;
+    font-size: 0.9rem;
+    letter-spacing: 0.025em;
+}
+
+.tickets-table tr:hover {
+    background: #fafafa;
+}
+
+.tickets-table tr:last-child td {
+    border-bottom: none;
+}
+
+.ticket-id {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.85rem;
+    color: #666666;
+    font-weight: 500;
+}
+
+.ticket-title {
+    font-weight: 500;
+    color: #333333;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ticket-title:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
+.ticket-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #888888;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.action-btn:hover {
+    background: #f5f5f5;
+    color: #333333;
+}
+
+.action-btn.edit:hover {
+    color: #0284c7;
+    background: #f0f9ff;
+}
+
+.action-btn.delete:hover {
+    color: #dc2626;
+    background: #fef2f2;
+}
+
+.assignee-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.assignee-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #666666;
+}
+
+.assignee-name {
+    font-size: 0.9rem;
+    color: #333333;
+}
+
+.unassigned {
+    color: #888888;
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+.ticket-date {
+    font-size: 0.85rem;
+    color: #666666;
+}
+
+.tickets-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #888888;
+}
+
+.tickets-empty i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #cccccc;
+}
+
+.tickets-empty h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #666666;
+}
+
+.tickets-empty p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.tickets-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.pagination-btn {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #666666;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: #333333;
+    color: #333333;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn.active {
+    background: #333333;
+    color: white;
+    border-color: #333333;
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: #888888;
+}
+
+/* Confirmation Dialog */
+.confirmation-dialog {
+    max-width: 500px;
+    width: 90%;
+    margin: 15vh auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.confirmation-header {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    padding: 30px 25px 25px;
+    text-align: center;
+    position: relative;
+}
+
+.confirmation-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.confirmation-icon i {
+    font-size: 28px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-header h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.025em;
+}
+
+.confirmation-body {
+    padding: 30px 25px;
+    text-align: center;
+    background: white;
+}
+
+.confirmation-body p {
+    margin: 0;
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.confirmation-actions {
+    padding: 25px;
+    background: #f9fafb;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    border-top: 1px solid #e5e7eb;
+}
+
+.confirmation-actions .btn {
+    min-width: 110px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0.025em;
+}
+
+.confirmation-actions .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.confirmation-actions .btn-secondary {
+    background: white;
+    color: #6b7280;
+    border-color: #d1d5db;
+}
+
+.confirmation-actions .btn-secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    color: #374151;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-actions .btn-danger {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.confirmation-actions .btn-danger:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3);
+}
+
+.confirmation-actions .btn-danger:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.modal.confirmation-active {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .tickets-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .tickets-controls {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .search-box input {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tickets-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box input {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+    
+    .tickets-table-container {
+        overflow-x: auto;
+    }
+    
+    .tickets-table {
+        min-width: 700px;
+    }
+    
+    .tickets-table th,
+    .tickets-table td {
+        padding: 1rem 0.75rem;
+    }
+    
+    .ticket-title {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 640px) {
+    .confirmation-dialog {
+        max-width: 95%;
+        margin: 10vh auto;
+        border-radius: 12px;
+    }
+    
+    .confirmation-header {
+        padding: 25px 20px 20px;
+    }
+    
+    .confirmation-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .confirmation-icon i {
+        font-size: 24px;
+    }
+    
+    .confirmation-header h3 {
+        font-size: 20px;
+    }
+    
+    .confirmation-body {
+        padding: 25px 20px;
+    }
+    
+    .confirmation-body p {
+        font-size: 15px;
+    }
+    
+    .confirmation-actions {
+        padding: 20px;
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+    
+    .confirmation-actions .btn {
+        width: 100%;
+        margin: 0;
+        padding: 14px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tickets-header h2 {
+        font-size: 2rem;
+    }
+    
+    .tickets-table {
+        min-width: 600px;
+    }
+    
+    .tickets-table th,
+    .tickets-table td {
+        padding: 0.875rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .ticket-title {
+        max-width: 150px;
+    }
+    
+    .tickets-pagination {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tickets-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tickets-controls .btn {
+        white-space: nowrap;
+    }
+
+    .confirmation-dialog {
+        margin: 5vh auto;
+    }
+    
+    .confirmation-header {
+        padding: 20px 15px;
+    }
+    
+    .confirmation-body {
+        padding: 20px 15px;
+    }
+    
+    .confirmation-actions {
+        padding: 15px;
+    }
+}
