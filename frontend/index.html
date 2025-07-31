@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Incident Tracker Dashboard</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/dashboard.css">
@@ -17,28 +17,30 @@
                 <i class="fas fa-shield-alt"></i>
                 <h1>Incident Tracker</h1>
             </div>
+            
             <nav class="nav-tabs">
                 <button class="nav-tab active" data-tab="dashboard">
                     <i class="fas fa-tachometer-alt"></i>
-                    Dashboard
+                    <span>Dashboard</span>
                 </button>
                 <button class="nav-tab" data-tab="tickets">
                     <i class="fas fa-ticket-alt"></i>
-                    Tickets
+                    <span>Tickets</span>
                 </button>
                 <button class="nav-tab" data-tab="users">
                     <i class="fas fa-users"></i>
-                    Users
+                    <span>Users</span>
                 </button>
                 <button class="nav-tab" data-tab="analytics">
                     <i class="fas fa-chart-bar"></i>
-                    Analytics
+                    <span>Analytics</span>
                 </button>
             </nav>
+            
             <div class="user-info">
                 <div class="notification-bell" id="notification-bell">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-count" id="notification-count">0</span>
+                    <span class="notification-count hidden" id="notification-count">0</span>
                     <div class="notification-dropdown" id="notification-dropdown">
                         <div class="notification-header">
                             <h4>Notifications</h4>
@@ -53,16 +55,18 @@
                     </div>
                 </div>
                 
-                <button class="btn btn-warning reset-demo-btn" id="reset-demo-btn" title="Reset Demo Data">
-                    <i class="fas fa-refresh"></i>
-                    Reset Demo
-                </button>
-                
                 <div class="user-profile">
                     <i class="fas fa-user-circle"></i>
-                    <span class="user-name">John Doe</span>
-                    <span class="user-role">Admin</span>
+                    <div class="user-details">
+                        <span class="user-name">Demo Admin</span>
+                        <span class="user-role">Admin</span>
+                    </div>
                 </div>
+                
+                <button class="btn reset-demo-btn" id="reset-demo-btn" title="Reset Demo Data">
+                    <i class="fas fa-refresh"></i>
+                    <span>Reset Demo</span>
+                </button>
             </div>
         </div>
     </header>
@@ -85,7 +89,7 @@
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>
                     <div class="metric-info">
-                        <h3 id="critical-count">5</h3>
+                        <h3 id="critical-count">0</h3>
                         <p>Critical Issues</p>
                     </div>
                 </div>
@@ -94,7 +98,7 @@
                         <i class="fas fa-arrow-up"></i>
                     </div>
                     <div class="metric-info">
-                        <h3 id="high-count">12</h3>
+                        <h3 id="high-count">0</h3>
                         <p>High Priority</p>
                     </div>
                 </div>
@@ -103,7 +107,7 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="metric-info">
-                        <h3 id="open-count">23</h3>
+                        <h3 id="open-count">0</h3>
                         <p>Open Tickets</p>
                     </div>
                 </div>
@@ -112,7 +116,7 @@
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <div class="metric-info">
-                        <h3 id="resolved-count">156</h3>
+                        <h3 id="resolved-count">0</h3>
                         <p>Resolved Today</p>
                     </div>
                 </div>
@@ -180,10 +184,6 @@
                 <table class="tickets-table" id="tickets-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Priority</th>
-                            <th>Status</th>
                             <th>Assignee</th>
                             <th>Created</th>
                             <th>Actions</th>
@@ -370,4 +370,8 @@
     <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </body>
-</html>
+</html>ID</th>
+                            <th>Title</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>
