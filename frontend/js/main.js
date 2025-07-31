@@ -2354,3 +2354,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 100);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.mobile-nav-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabName = tab.getAttribute('data-tab');
+
+            document.querySelectorAll('.mobile-nav-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            const desktopTab = document.querySelector(`.nav-tab[data-tab="${tabName}"]`);
+            if (desktopTab) desktopTab.classList.add('active');
+
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+
+            if (window.incidentTracker) {
+                window.incidentTracker.loadTabData(tabName);
+            }
+        });
+    });
+});
