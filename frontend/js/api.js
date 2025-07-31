@@ -1,6 +1,6 @@
 class ApiService {
     constructor() {
-        this.baseURL = 'http://localhost:3001/api';
+        this.baseURL = 'https://incident-tracker-production.up.railway.app/api';
         this.token = localStorage.getItem('auth_token');
         this.refreshToken = localStorage.getItem('refresh_token');
     }
