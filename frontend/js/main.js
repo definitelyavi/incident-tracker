@@ -2376,3 +2376,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userProfile = document.getElementById('user-profile');
+    const userProfileDropdown = document.getElementById('user-profile-dropdown');
+    
+    if (userProfile && userProfileDropdown) {
+        userProfile.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = userProfileDropdown.classList.contains('active');
+            
+            document.querySelectorAll('.notification-dropdown, .user-profile-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            if (!isOpen) {
+                userProfileDropdown.classList.add('active');
+                
+                if (window.incidentTracker && window.incidentTracker.currentUser) {
+                    const user = window.incidentTracker.currentUser;
+                    document.getElementById('profile-user-name').textContent = user.name || 'Unknown User';
+                    document.getElementById('profile-user-email').textContent = user.email || '';
+                    document.getElementById('profile-user-role').textContent = user.role || 'User';
+                }
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!userProfile.contains(e.target)) {
+                userProfileDropdown.classList.remove('active');
+            }
+        });
+    }
+});
