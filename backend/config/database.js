@@ -13,11 +13,11 @@ if (process.env.DATABASE_URL) {
     };
 } else {
     pgConfig = {
-        host: process.env.PG_HOST || 'localhost',
+        host: process.env.PG_HOST,
         port: process.env.PG_PORT || 5432,
-        database: process.env.PG_DATABASE || 'incident_tracker',
-        user: process.env.PG_USER || 'postgres',
-        password: process.env.PG_PASSWORD || 'password',
+        database: process.env.PG_DATABASE,
+        user: process.env.PG_USER,
+        password: process.env.PG_PASSWORD,
         max: parseInt(process.env.PG_MAX_CONNECTIONS, 10) || 20,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
@@ -60,10 +60,20 @@ const db = {
         try {
             const result = await pgPool.query(text, params);
             const duration = Date.now() - start;
-            logger.debug('Query executed', { text, duration, rows: result.rowCount });
+            
+            if (process.env.NODE_ENV === 'development') {
+                logger.debug('Query executed', { text, duration, rows: result.rowCount });
+            } else {
+                logger.debug('Query executed', { duration, rows: result.rowCount });
+            }
+            
             return result;
         } catch (error) {
-            logger.error('Database query error:', { text, error: error.message });
+            if (process.env.NODE_ENV === 'development') {
+                logger.error('Database query error:', { text, error: error.message });
+            } else {
+                logger.error('Database query error:', { error: error.message });
+            }
             throw error;
         }
     },
