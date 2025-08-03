@@ -39,7 +39,7 @@ A modern incident management system for IT support teams to track and resolve se
 
 1. **Clone and install**
    ```bash
-   git clone https://github.com/yourusername/incident-tracker.git
+   git clone https://github.com/definitelyavi/incident-tracker.git
    cd incident-tracker
    npm install
    ```
