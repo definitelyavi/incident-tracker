@@ -82,16 +82,16 @@ A modern incident management system for IT support teams to track and resolve se
 ## Screenshots
 
 ### Dashboard Overview
-![Dashboard](./screenshots/Dashboard.png)
+![Dashboard](./frontend/screenshots/Dashboard.png)
 
 ### Ticket Management
-![Tickets](./screenshots/Tickets.png)
+![Tickets](./frontend/screenshots/Tickets.png)
 
 ### Analytics & Reporting
-![Analytics](./screenshots/Analytics.png)
+![Analytics](./frontend/screenshots/Analytics.png)
 
 ### Recent Activity
-![Recent Activity](./screenshots/Recent.png)
+![Recent Activity](./frontend/screenshots/Recent.png)
 
 ### Demo Setup
 
