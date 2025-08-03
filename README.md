@@ -2,6 +2,12 @@
 
 A modern incident management system for IT support teams to track and resolve service tickets efficiently. Built with Node.js, Express, PostgreSQL, and vanilla JavaScript.
 
+**[🔗 Live Demo](https://incident-tracker-production.up.railway.app/)**
+
+**Demo Credentials:**
+- Email: `admin@test.com`
+- Password: `password123`
+
 ## Features
 
 - **Ticket Management**: Create, update, assign, and track incident tickets
@@ -39,7 +45,7 @@ A modern incident management system for IT support teams to track and resolve se
 
 1. **Clone and install**
    ```bash
-   git clone https://github.com/definitelyavi/incident-tracker.git
+   git clone https://github.com/yourusername/incident-tracker.git
    cd incident-tracker
    npm install
    ```
@@ -62,6 +68,16 @@ A modern incident management system for IT support teams to track and resolve se
    ```
 
 5. **Access at** http://localhost:3001
+
+## Live Demo
+
+**Production Demo:** https://incident-tracker-production.up.railway.app/
+
+**Demo Credentials:**
+- Email: `admin@test.com`
+- Password: `password123`
+
+*Note: Demo data resets periodically. Feel free to create test tickets and explore all features.*
 
 ### Demo Setup
 
@@ -203,6 +219,10 @@ npm run test:coverage
 3. Make your changes
 4. Add tests for new features
 5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.
 
 ---
 
