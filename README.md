@@ -100,7 +100,7 @@ incident-tracker/
 │   ├── config/          # Database and app configuration
 │   ├── middleware/      # Authentication, validation, error handling
 │   ├── routes/          # API endpoints
-│   ├── services/        # Business logic (SLA, email, Slack)
+│   ├── services/        # Business logic (SLA monitoring)
 │   └── utils/           # Logging and utilities
 ├── frontend/
 │   ├── css/            # Stylesheets
