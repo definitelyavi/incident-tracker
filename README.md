@@ -45,7 +45,7 @@ A modern incident management system for IT support teams to track and resolve se
 
 1. **Clone and install**
    ```bash
-   git clone https://github.com/yourusername/incident-tracker.git
+   git clone https://github.com/definitelyavi/incident-tracker.git
    cd incident-tracker
    npm install
    ```
@@ -78,6 +78,20 @@ A modern incident management system for IT support teams to track and resolve se
 - Password: `password123`
 
 *Note: Demo data resets periodically. Feel free to create test tickets and explore all features.*
+
+## Screenshots
+
+### Dashboard Overview
+![Dashboard](./screenshots/Dashboard.png)
+
+### Ticket Management
+![Tickets](./screenshots/Tickets.png)
+
+### Analytics & Reporting
+![Analytics](./screenshots/Analytics.png)
+
+### Recent Activity
+![Recent Activity](./screenshots/Recent.png)
 
 ### Demo Setup
 
@@ -219,10 +233,6 @@ npm run test:coverage
 3. Make your changes
 4. Add tests for new features
 5. Submit a pull request
-
-## License
-
-MIT License - see LICENSE file for details.
 
 ---
 
