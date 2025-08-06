@@ -210,12 +210,6 @@ npm run dev
 npm start
 ```
 
-### Docker
-```bash
-docker build -t incident-tracker .
-docker run -p 3001:3001 --env-file .env incident-tracker
-```
-
 ## Testing
 
 ```bash
